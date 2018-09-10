@@ -1,0 +1,11 @@
+<resources>
+    <declare-styleable name="CuteIndicator">
+        <attr name="IndicatorColor" format="color"/>
+        <attr name="IndicatorShadowColor" format="color"/>
+        <attr name="IndicatorSelectedWidthDimension" format="dimension"/>
+        <attr name="IndicatorDiaDimension" format="dimension"/>
+        <attr name="IndicatorSpaceDimension" format="dimension"/>
+        <attr name="IndicatorShadowRadiusDimension" format="dimension"/>
+        <attr name="IndicatorIsAnimation" format="boolean"/>
+    </declare-styleable>
+</resources>

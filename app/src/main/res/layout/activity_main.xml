@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <com.djk.library.CuteIndicator
+        android:id="@+id/indicator"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_width="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        app:IndicatorColor="@android:color/white"
+        app:IndicatorDiaDimension="10dp"
+        app:IndicatorIsAnimation="true"
+        app:IndicatorSelectedWidthDimension="20dp"
+        app:IndicatorSpaceDimension="5dp"/>
+
+</FrameLayout>
