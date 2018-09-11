@@ -7,5 +7,6 @@
         <attr name="IndicatorSpaceDimension" format="dimension"/>
         <attr name="IndicatorShadowRadiusDimension" format="dimension"/>
         <attr name="IndicatorIsAnimation" format="boolean"/>
+        <attr name="IndicatorIsShadow" format="boolean"/>
     </declare-styleable>
 </resources>

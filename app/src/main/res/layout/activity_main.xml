@@ -23,7 +23,10 @@
         android:layout_height="wrap_content"
         app:IndicatorColor="@android:color/white"
         app:IndicatorDiaDimension="10dp"
+        app:IndicatorShadowColor="#44000000"
         app:IndicatorIsAnimation="true"
+        app:IndicatorIsShadow="true"
+        app:IndicatorShadowRadiusDimension="2dp"
         app:IndicatorSelectedWidthDimension="20dp"
         app:IndicatorSpaceDimension="5dp"/>
 

@@ -6,6 +6,7 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
+import android.view.View
 import android.widget.LinearLayout
 
 
@@ -29,11 +30,13 @@ class CuteIndicator : LinearLayout {
 
     private var firstVisiblePosition = 0
 
-    private var indicatorColor = 0xffffff
+    private var indicatorColor = 0xffffffff
 
-    private var shadowColor = 0x888888
+    private var shadowColor = 0x88000000
 
     private var isAnimation = true
+
+    private var isShadow = true
 
 
     constructor(context: Context) : super(context) {
@@ -49,7 +52,6 @@ class CuteIndicator : LinearLayout {
     }
 
     private fun init(attrs: AttributeSet?, defStyle: Int) {
-//        setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
         //默认值
         selectedWidth = dp2px(20f)
@@ -63,21 +65,26 @@ class CuteIndicator : LinearLayout {
         val a = context.obtainStyledAttributes(
                 attrs, R.styleable.CuteIndicator, defStyle, 0)
 
-        indicatorColor = a.getColor(R.styleable.CuteIndicator_IndicatorColor, indicatorColor)
-        shadowColor = a.getColor(R.styleable.CuteIndicator_IndicatorShadowColor, indicatorColor)
+        indicatorColor = a.getColor(R.styleable.CuteIndicator_IndicatorColor, indicatorColor.toInt()).toLong()
+        shadowColor = a.getColor(R.styleable.CuteIndicator_IndicatorShadowColor, shadowColor.toInt()).toLong()
         selectedWidth = a.getDimension(R.styleable.CuteIndicator_IndicatorSelectedWidthDimension, selectedWidth)
         dia = a.getDimension(R.styleable.CuteIndicator_IndicatorDiaDimension, dia)
         space = a.getDimension(R.styleable.CuteIndicator_IndicatorSpaceDimension, space)
         shadowRadius = a.getDimension(R.styleable.CuteIndicator_IndicatorShadowRadiusDimension, shadowRadius)
         isAnimation = a.getBoolean(R.styleable.CuteIndicator_IndicatorIsAnimation, isAnimation)
+        isShadow = a.getBoolean(R.styleable.CuteIndicator_IndicatorIsShadow, isShadow)
 
         a.recycle()
 
+        if (isShadow)
+            setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+
         paint = Paint().apply {
             flags = Paint.ANTI_ALIAS_FLAG
-            color = indicatorColor
+            color = indicatorColor.toInt()
             style = Paint.Style.FILL
-//            setShadowLayer(shadowRadius, 0f, 0f, shadowColor)
+            if (isShadow)
+                setShadowLayer(shadowRadius, shadowRadius / 2, shadowRadius / 2, shadowColor.toInt())
         }
 
     }
@@ -90,8 +97,13 @@ class CuteIndicator : LinearLayout {
 
         itemCount = viewPager.adapter!!.count
 
-        layoutParams.width = ((itemCount - 1) * (space + dia) + selectedWidth + shadowRadius).toInt()
-        layoutParams.height = (dia + shadowRadius).toInt()
+        if (isShadow) {
+            layoutParams.width = ((itemCount - 1) * (space + dia) + selectedWidth + shadowRadius).toInt()
+            layoutParams.height = (dia + shadowRadius).toInt()
+        } else {
+            layoutParams.width = ((itemCount - 1) * (space + dia) + selectedWidth).toInt()
+            layoutParams.height = dia.toInt()
+        }
 
         viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
