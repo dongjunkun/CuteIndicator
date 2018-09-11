@@ -21,7 +21,7 @@ allprojects {
 }
 ~~~
 2)In your app build.gradle add:
-~~~~
+~~~
 dependencies {
 	        implementation 'com.github.dongjunkun:CuteIndicator:1.0.1'
 	}
