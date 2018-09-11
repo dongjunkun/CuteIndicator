@@ -25,8 +25,7 @@ allprojects {
 dependencies {
 	        implementation 'com.github.dongjunkun:CuteIndicator:1.0.1'
 	}
-~~
-
+~~~
 
 ## Custom property explain
 | property| format|explain|
